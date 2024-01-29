@@ -1,0 +1,35 @@
+<div class="app-container">
+
+  <app-header (toggleSidebarEvent)="sidebar.toggle()"></app-header>
+  <app-sidebar #sidebar></app-sidebar>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <p-footer>
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-section company-info">
+          <img src="assets/Smart-building_Management_System1.png" alt="Smart Building Dashboard Logo" class="logo">
+          <p>Smart-building Management System</p>
+          <p style="  font-style: italic;">Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης, Θεσσαλονίκη, 54124</p>
+        </div>
+        <div class="footer-section legal">
+          <h3>Useful links</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <span>© 2023 Smart-building Management System. All rights reserved.</span>
+      </div>
+    </div>
+  </p-footer>
+
+</div>

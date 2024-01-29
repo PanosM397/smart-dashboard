@@ -1,0 +1,150 @@
+<!-- <div class="content">
+  <div class="p-grid dashboard">
+    <div class="p-col-12">
+      <h2 style="padding-left: 1.5rem;">Smart Building Dashboard</h2>
+    </div>
+
+    <div class="p-col-12">
+      <app-real-time-energy-usage></app-real-time-energy-usage>
+    </div>
+
+    <div class="p-col-12">
+      <div class="iot-device-cards">
+        <div class="p-grid">
+          <h2 style="padding-top: 1.5rem;">Control your IoT Devices</h2>
+          <div class="p-col" *ngFor="let device of devices">
+            <p-card [header]="device.name" [subheader]="device.type">
+              <p class="device-status"
+                [ngClass]="{'device-on': device.status === 'On', 'device-off': device.status === 'Off'}">
+                Status: {{ device.status }}
+              </p>
+              <p-button (onClick)="toggleDevice(device)" label="Toggle" icon="pi pi-power-off"
+                [ngClass]="{'p-button-success': device.status === 'On', 'p-button-warning': device.status === 'Off'}">
+              </p-button>
+            </p-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="padding-left: 1.5rem; padding-top: 1.5rem;">Control your IoT Devices</h2>
+    <div class="p-grid custom-device-cards">
+      <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let device of devices">
+        <div class="custom-card">
+          <div class="custom-card-header">{{ device.name }}</div>
+
+          <div class="custom-card-icon">
+            <p-image src="../../assets/iot.png" alt="Image" width="100"></p-image>
+          </div>
+
+          <div class="custom-card-status">
+            <p class="device-status"
+              [ngClass]="{'device-on': device.status === 'On', 'device-off': device.status === 'Off'}">
+              Status: {{ device.status }}
+            </p>
+            <p-button (onClick)="toggleDevice(device)" label="Toggle" icon="pi pi-power-off"
+              [ngClass]="{'p-button-success': device.status === 'On', 'p-button-warning': device.status === 'Off'}">
+            </p-button>
+          </div>
+          <div class="custom-card-status">
+            <p-button label="Inspect Device" icon="pi pi-search-plus" (onClick)="inspectDevice(device)"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div> -->
+
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'1000ms'" [hideTransitionOptions]="'1000ms'" [showTransformOptions]="'translateX(100%)'"></p-toast>
+
+<div class="content">
+  <div class="p-grid dashboard">
+    <div class="p-col-12">
+      <h2 class="dashboard-header">Smart Building Dashboard</h2>
+    </div>
+
+    <p-tabView>
+      <p-tabPanel header="Energy Data">
+        <app-real-time-energy-usage></app-real-time-energy-usage>
+      </p-tabPanel>
+
+      <p-tabPanel header="IoT Device Control">
+        <div class="p-grid custom-device-cards">
+          <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let device of devices">
+            <div class="custom-card">
+              <div class="custom-card-header">{{ device.name }}</div>
+
+              <div class="custom-card-icon">
+                <p-image src="../../assets/iot.png" alt="Image" width="100"></p-image>
+              </div>
+
+              <div class="custom-card-status">
+                <p class="device-status"
+                  [ngClass]="{'device-on': device.status === 'On', 'device-off': device.status === 'Off'}">
+                  <p-badge
+                  size="large"
+                  [value]="device.status"
+                  [severity]="getBadgeSeverity(device.status)"
+                  [styleClass]="getBadgeStyleClass(device.status)">
+                </p-badge>
+                </p>
+
+                <p-button (onClick)="toggleDevice(device)" label="Toggle" icon="pi pi-power-off"
+                  [ngClass]="{'p-button-success': device.status === 'On', 'p-button-warning': device.status === 'Off'}">
+                </p-button>
+              </div>
+              <div class="custom-card-status">
+                <p-button label="Inspect Device" icon="pi pi-search-plus" (onClick)="inspectDevice(device)"></p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+<!--
+      <p-tabPanel header="Historical Data">
+
+      </p-tabPanel>
+
+      <p-tabPanel header="System Settings">
+
+      </p-tabPanel> -->
+    </p-tabView>
+  </div>
+</div>
+
+
+
+<p-dialog header="Device Details" [(visible)]="displayDialog" [modal]="true" [closable]="false" [resizable]="false"
+  [draggable]="false" [style]="{width: '40vw', maxWidth: '500px', minWidth: '300px'}"
+  [contentStyle]="{'min-height': '150px', 'overflow': 'auto'}" [dismissableMask]="true" [blockScroll]="true"
+  [baseZIndex]="10000" [showHeader]="true">
+
+  <div *ngIf="selectedDevice" class="room-details">
+    <p-accordion>
+      <p-accordionTab header="General Information">
+        <!-- General device information here -->
+      </p-accordionTab>
+      <p-accordionTab header="Usage Statistics">
+        <p-chart type="line" [data]="deviceUsageData"></p-chart>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+
+  <p-footer>
+    <button type="button" pButton label="Close" icon="pi pi-check" (click)="closeDialog()"></button>
+  </p-footer>
+</p-dialog>
+
+
+<!-- <div class="dashboard-filters">
+    <p-dropdown [options]="rooms" [(ngModel)]="filterCriteria.room" placeholder="Select a room"></p-dropdown>
+    <p-dropdown [options]="timesOfDay" [(ngModel)]="filterCriteria.timeOfDay" placeholder="Select a time of day"></p-dropdown>
+
+    <p-calendar [(ngModel)]="dates" selectionMode="range"></p-calendar>
+
+    <p-button label="Apply Filters" (onClick)="applyFilters()"></p-button>
+  </div> -->

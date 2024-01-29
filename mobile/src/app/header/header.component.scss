@@ -1,0 +1,38 @@
+:host {
+  .logo {
+    height: 40px;
+    margin-left: 15px;
+  }
+
+  ion-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+  }
+
+  .profile-image {
+    height: 40px;
+    border-radius: 20px;
+  }
+
+  .username {
+    margin-left: 10px;
+  }
+
+  ion-title {
+    --padding-start: 5px;
+    --padding-end: 5px;
+    --background: transparent;
+  }
+
+  ion-segment-button {
+    --padding: 0 10px;
+  }
+
+  .secondary {
+    display: flex;
+    align-items: center;
+    // margin-right: 14rem;
+    font-size: 13px;
+  }
+}

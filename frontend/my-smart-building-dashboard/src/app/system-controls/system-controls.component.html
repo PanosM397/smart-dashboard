@@ -1,0 +1,13 @@
+<div class="system-controls">
+  <h3>System Controls</h3>
+  <div *ngFor="let control of controls" class="control-item">
+    <h4>{{ control.name }}</h4>
+    <p-toggleButton [onLabel]="'On'" [offLabel]="'Off'" [(ngModel)]="control.state" (onChange)="toggleControl(control)"></p-toggleButton>
+    <div *ngIf="control.level !== undefined">
+      <h4>{{ control.name }}</h4>
+      <p-slider [(ngModel)]="control.level" [min]="0" [max]="100"
+                (onSlideEnd)="changeLevel(control, $event)">
+      </p-slider>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+// .sidebar {
+//   width: 200px;
+//   height: 100vh;
+//   background-color: #f1f1f1;
+// }
+
+// .sidebar ul {
+//   list-style-type: none;
+//   padding: 0;
+// }
+
+// .sidebar ul li {
+//   padding: 8px;
+//   text-align: center;
+// }
+
+:host ::ng-deep .p-sidebar {
+  width: 250px; /* Adjust width as needed */
+}
+
+:host ::ng-deep .p-sidebar-left {
+  box-shadow: 3px 0px 6px rgba(0, 0, 0, 0.16);
+}
+
+/* Example of custom styling */
+.p-sidebar {
+  background-color: #f4f4f4;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 8px;
+  text-align: center;
+}

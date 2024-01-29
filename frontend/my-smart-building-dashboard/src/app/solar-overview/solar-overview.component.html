@@ -1,0 +1,67 @@
+<div class="content">
+  <div class="p-grid dashboard-container">
+    <div *ngFor="let item of dashboardItems; let i = index"
+         class="p-col-12 p-md-6 dashboard-container"
+         pDraggable="dd"
+         (onDragStart)="onDragStart($event, i)"
+         pDroppable="dd"
+         (onDrop)="onDrop($event, i)">
+
+      <div *ngIf="item.id === 'realTimeData'" class="chart-container">
+        <canvas baseChart [data]="realTimeData" type="bar" [options]="options"></canvas>
+      </div>
+
+      <div *ngIf="item.id === 'historicalData'" class="chart-container">
+        <canvas baseChart [data]="historicalChartData" type="bar" [options]="historicalOptions"></canvas>
+      </div>
+
+      <div *ngIf="item.id === 'summaryMetrics'" class="summary-metrics">
+        <p-card class="custom-card" *ngFor="let metric of summaryMetrics" [header]="metric.title">
+          <p>{{ metric.value }}</p>
+          <p-footer>{{ metric.description }}</p-footer>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="content">
+  <div class="p-grid dashboard-container">
+
+    <div class="p-col-12">
+      <p-tabView>
+        <p-tabPanel header="Real-Time Data">
+
+          <div class="p-col-12 p-md-6 dashboard-container">
+
+            <div class="chart-container">
+              <canvas baseChart [data]="realTimeData" type="bar" [options]="options"> </canvas>
+            </div>
+
+            <div class="chart-container">
+              <canvas baseChart [data]="historicalChartData" type="bar" [options]="historicalOptions"> </canvas>
+            </div>
+
+          </div>
+
+          <div class="p-col-12 p-md-6 dashboard-container">
+
+            <div class="summary-metrics">
+              <p-card class="custom-card" *ngFor="let metric of summaryMetrics" [header]="metric.title">
+                <p>{{ metric.value }}</p>
+                <p-footer>{{ metric.description }}</p-footer>
+              </p-card>
+            </div>
+
+          </div>
+
+        </p-tabPanel>
+
+      </p-tabView>
+    </div>
+
+  </div>
+
+</div> -->

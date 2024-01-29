@@ -1,0 +1,187 @@
+<div class="dashboard-container">
+
+  <div class="floor-plan-container">
+    <svg width="600px" height="800px" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+      <!-- Floor 1 -->
+      <g id="floor1">
+        <rect x="10" y="10" width="280" height="250" fill="#E8E8E8" stroke="#000" stroke-width="2" />
+        <text x="20" y="30" font-size="16">Floor 1</text>
+
+        <!-- Rooms on Floor 1 -->
+        <rect data-room-id="room1F1" class="room" x="11" y="50" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room1F1')}" (click)="onRoomClick('room1F1')"
+          (mouseover)="showTooltip($event, 'room1F1')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="35" y="80" font-size="12">Room 101</text>
+        <!-- Room 2 on Floor 1 -->
+        <rect data-room-id="room2F1" class="room" x="11" y="169" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room2F1')}" (click)="onRoomClick('room2F1')"
+          (mouseover)="showTooltip($event, 'room2F1')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="35" y="200" font-size="12">Room 102</text>
+
+        <!-- Room 3 on Floor 1 -->
+        <rect data-room-id="room3F1" class="room" x="169" y="169" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room3F1')}" (click)="onRoomClick('room3F1')"
+          (mouseover)="showTooltip($event, 'room3F1')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="195" y="200" font-size="12">Room 103</text>
+
+        <!-- Doors for Floor 1 Rooms -->
+        <rect x="131" y="85" width="3" height="20" fill="black" />
+        <!-- <rect x="200" y="50" width="20" height="3" fill="black"/> -->
+        <rect x="70" y="166" width="20" height="3" fill="black" />
+        <rect x="200" y="166" width="20" height="3" fill="black" />
+
+        <rect x="250" y="40" width="30" height="50" fill="none" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="60" x2="280" y2="60" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="70" x2="280" y2="70" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="80" x2="280" y2="80" stroke="#000" stroke-width="1" />
+        <!-- ... more steps ... -->
+        <line x1="250" y1="90" x2="280" y2="90" stroke="#000" stroke-width="1" />
+
+        <!-- Elevator for Floor 1 -->
+        <rect x="259" y="105" width="30" height="40" fill="#C0C0C0" stroke="#000" stroke-width="1"
+          class="interactive-element" (click)="onElevatorClick()" />
+        <text x="266" y="130" font-size="12">Lift</text>
+      </g>
+
+      <!-- Floor 2 -->
+      <g id="floor2" transform="translate(0, 270)">
+        <rect x="10" y="10" width="280" height="250" fill="#E8E8E8" stroke="#000" stroke-width="2" />
+        <text x="20" y="30" font-size="16">Floor 2</text>
+
+        <!-- Rooms on Floor 2 -->
+        <rect data-room-id="room1F2" class="room" x="11" y="50" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room1F2')}" (click)="onRoomClick('room1F2')"
+          (mouseover)="showTooltip($event, 'room1F2')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="35" y="370" font-size="12">Room 201</text>
+        <!-- Room 2 on Floor 2 -->
+        <rect data-room-id="room2F2" class="room" x="11" y="169" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room2F2')}" (click)="onRoomClick('room2F2')"
+          (mouseover)="showTooltip($event, 'room2F2')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="35" y="470" font-size="12">Room 202</text>
+
+        <!-- Room 3 on Floor 2 -->
+        <rect data-room-id="room3F2" class="room" x="169" y="169" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room3F2')}" (click)="onRoomClick('room3F2')"
+          (mouseover)="showTooltip($event, 'room3F2')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="195" y="470" font-size="12">Room 203</text>
+
+
+        <!-- Doors for Floor 1 Rooms -->
+        <rect x="131" y="85" width="3" height="20" fill="black" />
+        <!-- <rect x="200" y="50" width="20" height="3" fill="black"/> -->
+        <rect x="70" y="166" width="20" height="3" fill="black" />
+        <rect x="200" y="166" width="20" height="3" fill="black" />
+
+        <rect x="250" y="40" width="30" height="50" fill="none" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="60" x2="280" y2="60" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="70" x2="280" y2="70" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="80" x2="280" y2="80" stroke="#000" stroke-width="1" />
+        <!-- ... more steps ... -->
+        <line x1="250" y1="90" x2="280" y2="90" stroke="#000" stroke-width="1" />
+
+        <rect x="259" y="105" width="30" height="40" fill="#C0C0C0" stroke="#000" stroke-width="1" />
+        <text x="266" y="130" font-size="12">Lift</text>
+      </g>
+
+      <!-- Floor 3 -->
+      <g id="floor3" transform="translate(0, 540)">
+        <rect x="10" y="10" width="280" height="250" fill="#E8E8E8" stroke="#000" stroke-width="2" />
+        <text x="20" y="30" font-size="16">Floor 3</text>
+
+        <!-- Rooms on Floor 3 -->
+        <rect data-room-id="room1F3" class="room" x="11" y="50" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room1F3')}" (click)="onRoomClick('room1F3')"
+          (mouseover)="showTooltip($event, 'room1F3')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="35" y="640" font-size="12">Room 301</text>
+        <!-- Room 2 on Floor 3 -->
+        <rect data-room-id="room2F3" class="room" x="11" y="169" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room2F3')}" (click)="onRoomClick('room2F3')"
+          (mouseover)="showTooltip($event, 'room2F3')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="35" y="740" font-size="12">Room 302</text>
+
+        <!-- Room 3 on Floor 3 -->
+        <rect data-room-id="room3F3" class="room" x="169" y="169" width="120" height="90" fill="#ADD8E6" stroke="#000" stroke-width="1"
+          [ngStyle]="{'fill': getRoomColor('room3F3')}" (click)="onRoomClick('room3F3')"
+          (mouseover)="showTooltip($event, 'room3F3')" (mouseout)="hideTooltip()" />
+        <text class="room-label" x="195" y="740" font-size="12">Room 303</text>
+
+
+        <!-- Doors for Floor 1 Rooms -->
+        <rect x="131" y="85" width="3" height="20" fill="black" />
+        <!-- <rect x="200" y="50" width="20" height="3" fill="black"/> -->
+        <rect x="70" y="166" width="20" height="3" fill="black" />
+        <rect x="200" y="166" width="20" height="3" fill="black" />
+
+        <rect x="250" y="40" width="30" height="50" fill="none" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="60" x2="280" y2="60" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="70" x2="280" y2="70" stroke="#000" stroke-width="1" />
+        <line x1="250" y1="80" x2="280" y2="80" stroke="#000" stroke-width="1" />
+        <!-- ... more steps ... -->
+        <line x1="250" y1="90" x2="280" y2="90" stroke="#000" stroke-width="1" />
+
+        <rect x="259" y="105" width="30" height="40" fill="#C0C0C0" stroke="#000" stroke-width="1" />
+        <text x="266" y="130" font-size="12">Lift</text>
+      </g>
+
+      <!-- Labels for rooms, just as examples -->
+      <!-- <text x="70" y="100" font-size="12">101</text> -->
+       <!-- <text x="70" y="200" font-size="12">102</text>
+      <text x="200" y="200" font-size="12">103</text> -->
+
+      <text x="70" y="370" font-size="12">201</text>
+      <text x="70" y="470" font-size="12">202</text>
+      <text x="200" y="470" font-size="12">203</text>
+
+      <text x="70" y="640" font-size="12">301</text>
+      <text x="70" y="740" font-size="12">302</text>
+      <text x="200" y="740" font-size="12">303</text>
+    </svg>
+
+    <div id="svgTooltip" class="svg-tooltip" style="position: absolute; visibility: hidden;"></div>
+
+  </div>
+
+  <div class="control-panel-container">
+    <!-- <app-system-controls></app-system-controls> -->
+    <app-matterport-viewer [roomId]="selectedRoomId"></app-matterport-viewer>
+
+  </div>
+
+  <p-dialog header="Elevator Details" [(visible)]="displayElevatorDialog">
+    <div>
+      <p>Status: {{ elevatorData.status }}</p>
+      <p>Next Maintenance: {{ elevatorData.nextMaintenance | date:'mediumDate' }}</p>
+      <p>Alerts:</p>
+      <ul>
+        <li *ngFor="let alert of elevatorData.alerts">{{ alert }}</li>
+      </ul>
+    </div>
+    <p-footer>
+      <button type="button" pButton label="Close" (click)="displayElevatorDialog = false"></button>
+    </p-footer>
+  </p-dialog>
+
+</div>
+
+
+
+
+<!-- Room Details Panel -->
+<p-dialog header="Room Details" [(visible)]="displayDialog" [modal]="true" [closable]="false" [resizable]="false"
+  [draggable]="false" [style]="{width: '40vw', maxWidth: '500px', minWidth: '300px'}"
+  [contentStyle]="{'min-height': '150px', 'overflow': 'auto'}" [dismissableMask]="true" [blockScroll]="true"
+  [baseZIndex]="10000" [showHeader]="true">
+
+  <div *ngIf="selectedRoom" class="room-details">
+    <h3>Apartment ID: <span class="data-value"></span> {{ selectedRoom.roomId || 'Not available' }}</h3>
+    <p>Energy Consumption: <span class="data-value"></span> {{ selectedRoom.energyConsumption || 'Not available' }} kWh
+    </p>
+    <p>Temperature: <span class="data-value"></span> {{ selectedRoom.roomTemperature }} °C</p>
+    <p>Humidity: <span class="data-value"></span> {{ selectedRoom.humidity }}%</p>
+    <p>Occupancy: <span class="data-value"></span> {{ selectedRoom.occupancy }}</p>
+  </div>
+
+  <p-footer>
+    <button type="button" pButton label="Close" icon="pi pi-check" (click)="closeDialog()"></button>
+  </p-footer>
+</p-dialog>

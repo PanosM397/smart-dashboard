@@ -1,0 +1,11 @@
+<h3>Active Alerts</h3>
+<ul *ngIf="alerts.length > 0; else noAlertsTemplate">
+  <li *ngFor="let alert of alerts">
+    {{ alert.message }} ({{ alert.timestamp | date:'short' }})
+    <button (click)="acknowledgeAlert(alert._id)">Acknowledge</button>
+    <button (click)="deleteAlert(alert._id)">Delete</button>
+  </li>
+</ul>
+<ng-template #noAlertsTemplate>
+  <p>No active alerts.</p>
+</ng-template>

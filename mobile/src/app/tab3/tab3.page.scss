@@ -1,0 +1,114 @@
+// .dashboard-container {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .chart-container {
+//   padding: 20px;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+//   border-radius: 10px;
+//   background-color: #fff;
+// }
+
+// .summary-metrics {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px;
+// }
+
+// .custom-card {
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+//   transition: 0.3s;
+// }
+
+// ion-card {
+//   --background: #fff;
+//   --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+// }
+
+// ion-card:hover {
+//   --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+// }
+
+// @media (max-width: 768px) {
+//   .chart-container {
+//     width: 100%; /* Full width on smaller screens */
+//   }
+// }
+
+
+// ion-content {
+//   font-family: var(--ion-font-family, 'Roboto', sans-serif);
+//   --ion-padding: 16px
+//   margin-top: 15rem;
+// }
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 5rem;
+}
+
+.chart-container {
+  width: 100rem;
+  // max-width: 100%;
+  box-shadow: var(--ion-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.2));
+  border-radius: var(--ion-border-radius, 10px);
+  background-color: var(--ion-background-color, #fff);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.chart-container:hover {
+  box-shadow: var(--ion-box-shadow-hover, 0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+// .summary-metrics {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px;
+// }
+
+.chart-container3, .chart-container4 {
+  width: 45vw;
+  height: 65vh;
+  margin-left: 5px;
+}
+
+.chart-container2 {
+  width: 400px;
+  height: 300px;
+}
+
+@media (max-width: 768px) {
+  .chart-container, .chart-container3, .chart-container4 {
+    width: 100%;
+  }
+
+  .chart-container2 {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+#echarts {
+  width: 100rem;
+  min-height: 360px;
+  // height: auto;
+}
+
+
+.custom-card {
+  margin: 2px;
+  box-shadow: var(--ion-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: box-shadow 0.3s ease-in-out;
+  height: auto;
+}
+
+.custom-card:hover {
+  box-shadow: var(--ion-box-shadow-hover, 0 8px 16px rgba(0, 0, 0, 0.3));
+}

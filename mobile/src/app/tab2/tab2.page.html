@@ -1,0 +1,27 @@
+<!--<ion-header [translucent]="true">-->
+<!--  <ion-toolbar>-->
+<!--    <ion-title>-->
+<!--      Tab 2-->
+<!--    </ion-title>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="dashboard-container">
+
+
+
+    <div class="control-panel-container">
+      <!-- <app-system-controls></app-system-controls> -->
+      <app-matterport-viewer [roomId]="selectedRoomId"></app-matterport-viewer>
+
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,136 @@
+.content {
+  // flex-grow: 1;
+  padding: 2rem;
+}
+
+
+/* dashboard.component.css */
+.iot-device-cards {
+  transition: box-shadow .3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.device-status {
+  margin-bottom: 1em;
+}
+
+.device-on {
+  color: #5BB318; /* green */
+}
+
+.device-off {
+  color: #FFA726; /* orange */
+}
+
+// .p-button-success {
+//   background-color: #5BB318; /* green */
+//   border-color: #5BB318; /* green */
+// }
+
+// .p-button-warning {
+//   background-color: #FFA726; /* orange */
+//   border-color: #FFA726; /* orange */
+// }
+
+:host ::ng-deep .p-grid {
+  margin: 0;
+  padding: 1em;
+}
+
+:host ::ng-deep .p-col {
+  padding: .5em;
+}
+
+// :host ::ng-deep .p-card {
+//   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//   transition: box-shadow 0.3s ease-in-out;
+// }
+
+// :host ::ng-deep .p-card:hover {
+//   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+// }
+
+
+
+.custom-device-cards {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+:host ::ng-deep  .custom-device-cards .p-col {
+  padding: 0.5rem; /* Space between cards */
+}
+
+.custom-device-cards .custom-card {
+  margin: 1rem;
+  padding: 0 0 0.5rem 0;
+  border-radius: 10px;
+  border: 1px solid #37474F;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  color: #fff; /* Adjust as needed */
+  background-color: rgba(50, 54, 56, 0.3) !important;
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+}
+
+.custom-device-cards .custom-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+.custom-device-cards .custom-card-header {
+  background-color: rgba(50, 54, 56, 0.5) !important;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.custom-device-cards .custom-card-icon {
+  text-align: center; /* Center the icon */
+  padding: 1rem 0; /* Space around the icon */
+}
+
+.custom-device-cards .custom-card-status {
+  padding: 0 1rem 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+:host ::ng-deep .custom-device-cards .custom-card-status .p-button {
+  margin-left: 1rem;
+}
+
+.custom-device-cards .device-status {
+  margin-right: 0.5rem;
+  // border-radius: 10px;
+  // border: 1px solid #37474F;
+  padding: 0.5rem;
+  // background-color: #fff;
+}
+
+
+:host ::ng-deep .custom-device-cards .p-button {
+  background-color: rgba(50, 54, 56, 0.5);
+  border-color: rgba(50, 54, 56, 0.5);
+}
+
+
+
+:host ::ng-deep .p-tabview .p-tabview-panels {
+  padding: 1rem;
+}
+// :host ::ng-deep .p-tabview .p-tabview-nav {
+//   border-bottom: none;
+// }
+:host ::ng-deep .p-tabview .p-tabview-nav li {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  margin-right: .5rem;
+}

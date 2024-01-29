@@ -1,0 +1,46 @@
+<ion-content>
+  <div class="ion-padding dashboard-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" *ngFor="let item of dashboardItems">
+
+          <div *ngIf="item.id === 'realTimeData'" class="chart-container">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Real Time Data</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <div echarts [options]="options" class="echart-style"></div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <div *ngIf="item.id === 'historicalData'" class="chart-container">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Historical Data</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <div echarts [options]="historicalOptions" class="echart-style"></div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+
+          <div *ngIf="item.id === 'summaryMetrics'" class="summary-metrics">
+            <ion-card class="custom-card" *ngFor="let metric of summaryMetrics">
+              <ion-card-header>
+                <ion-card-title>{{ metric.title }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <p>{{ metric.value }}</p>
+                <p>{{ metric.description }}</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

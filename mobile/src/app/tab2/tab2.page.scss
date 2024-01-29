@@ -1,0 +1,222 @@
+.dashboard-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  //display: flex;
+  //flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 5rem;
+}
+
+.control-panel-container {
+  position: relative;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    // flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+
+  .floor-plan-container{
+    max-width: 100%;
+  }
+
+  .control-panel-container {
+    position: relative;
+    min-width: 50%;
+  }
+}
+
+
+.floor-plan-container rect.room {
+  transition: fill 0.3s ease, stroke-width 0.3s ease;
+}
+
+.floor-plan-container rect.room:hover {
+  fill: #ffcc00; /* Change color on hover */
+  cursor: pointer;
+  stroke-width: 2px; /* Make the border thicker on hover */
+}
+
+.floor-plan-container text.room-label {
+  pointer-events: none; /* Prevents text from blocking hover on rect */
+}
+
+.floor-plan-container rect.interactive-element:hover {
+  fill: #bfbfbf; /* Lighter shade on hover */
+  cursor: pointer;
+}
+
+.svg-tooltip {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.room.active {
+  stroke: white;
+  stroke-width: 2px;
+}
+
+
+
+.floor-plan-container svg {
+  width: 100%;
+  height: auto;
+}
+
+.floor-plan-container svg g:hover {
+  /* Highlight style for interactive areas */
+  fill: #eef6fc;
+}
+
+rect:hover {
+  fill: #b0c4de; /* Lighter shade on hover */
+  cursor: pointer;
+}
+
+.room-details-panel {
+  position: absolute;
+  top: 350px;
+  right: 400px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* Dialog container */
+.room-details-panel .p-dialog {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  background-color: #fff;
+  width: 90vw;
+  max-width: 500px;
+}
+
+/* Dialog content */
+.room-details-panel .p-dialog .p-dialog-content {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #e6e9f0 0%, #eef1f5 100%);
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Data field labels */
+.room-details .data-label {
+  font-weight: bold; /* Make labels bold */
+  color: #555; /* A slightly darker shade for better contrast */
+  display: block; /* Block display to create a line break */
+}
+
+/* Data values */
+.room-details .data-value {
+  margin-left: 5px; /* Space out the label and value */
+  display: inline; /* Keep value inline with label */
+}
+
+
+.p-dialog-content {
+  margin: 0;
+  padding: 0;
+}
+
+/* Room details */
+.room-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.room-details p {
+  margin: 10px 0;
+  color: #333333;
+  font-size: 1rem;
+}
+
+/* Dialog footer */
+p-footer {
+  // background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  border-top: 1px solid #ccc;
+}
+
+p-footer button {
+  width: 100%;
+  max-width: 150px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 2px 0 rgba(0, 123, 255, 0.5);
+}
+
+p-footer button:hover {
+  background-color: #0056b3;
+}
+
+p-footer button.p-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+p-footer button.p-button:hover {
+  background-color: #0056b3;
+}
+
+p-footer button.p-button .pi {
+  margin-right: .5em;
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  // background-color: #007bff;
+  // color: white;
+  // padding: 10px 20px;
+  // border-top-left-radius: 9px;
+  // border-top-right-radius: 9px;
+}
+
+.custom-header h3 {
+  margin: 0;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .room-details-panel .p-dialog {
+    width: 90vw; /* Full width on smaller screens */
+    max-width: none;
+  }
+}

@@ -1,0 +1,83 @@
+<!-- <div>
+  <table>
+    <thead>
+      <tr>
+        <th>Energy Consumption</th>
+        <th>Room Temperature</th>
+        <th>Humidity</th>
+        <th>Occupancy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="energyData">
+        <td>{{ energyData.energyConsumption }}</td>
+        <td>{{ energyData.roomTemperature }}</td>
+        <td>{{ energyData.humidity }}</td>
+        <td>{{ energyData.occupancy }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div echarts [initOpts]="initOpts" [options]="chartOption" [autoResize]="true" class="chart-container">
+  </div>
+
+  <div *ngIf="historicalChartOptions">
+      <h2>Historical Energy Consumption</h2>
+
+      <div echarts [initOpts]="initOpts" [options]="historicalChartOptions" [autoResize]="true" class="chart-container">
+      </div>
+  </div> -->
+
+<div class="dashboard-container">
+  <div class="chart-container">
+    <p-table [value]="[energyData1]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Energy Consumption</th>
+          <th>Room Temperature</th>
+          <th>Humidity</th>
+          <th>Occupancy</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+        <tr>
+          <td>{{ data.energyConsumption }}</td>
+          <td>{{ data.roomTemperature }}</td>
+          <td>{{ data.humidity }}</td>
+          <td>{{ data.occupancy }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+  <!-- Real Time Energy Consumption Chart -->
+  <div class="chart-container">
+    <h2>Real Time Energy Consumption</h2>
+    <canvas baseChart [datasets]="realTimeChartData" [labels]="realTimeChartLabels" [type]="'bar'">
+    </canvas>
+  </div>
+
+  <!-- Historical Energy Consumption Chart -->
+  <div class="chart-container" *ngIf="historicalChartData && historicalChartData[0].data.length">
+    <h2>Historical Energy Consumption</h2>
+    <canvas baseChart [datasets]="historicalChartData" [labels]="historicalChartLabels"
+      [options]="historicalChartOptions" [type]="'line'">
+    </canvas>
+  </div>
+
+  <!-- Occupancy Trends Chart -->
+  <div class="chart-container">
+    <h3>Occupancy Trends</h3>
+    <canvas baseChart [datasets]="occupancyChartData" [labels]="occupancyChartLabels" [options]="occupancyChartOptions"
+      [type]="'line'">
+    </canvas>
+  </div>
+
+  <!-- Temperature Heatmap -->
+  <div class="chart-container">
+    <h3>Temperature Heatmap</h3>
+    <div echarts [initOpts]="initOpts" [options]="heatmapOptions" [autoResize]="true" class="chart-container3">
+    </div>
+  </div>
+</div>

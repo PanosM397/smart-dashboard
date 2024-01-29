@@ -1,0 +1,155 @@
+:host ::ng-deep .header {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+:host ::ng-deep  .p-toolbar-group-left, .p-toolbar-group-center, .p-toolbar-group-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-toolbar-group-left {
+  justify-content: flex-start;
+}
+
+.p-toolbar-group-right {
+  justify-content: flex-end;
+}
+
+
+.logo {
+  height: 120px;
+  margin-left: 2rem;
+}
+
+.header-menubar {
+  width: auto;
+  margin: 0 20px;
+}
+
+/* User profile styles */
+.user-profile-actions {
+  display: flex;
+  align-items: center;
+
+}
+
+:host ::ng-deep .p-toolbar {
+  // background-color: #62f9e7 !important;
+  // color: white;
+  border: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+/* Profile section */
+:host ::ng-deep .user-profile-actions {
+  display: flex;
+  align-items: center;
+}
+
+:host ::ng-deep .profile-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+:host ::ng-deep .username {
+  margin-right: 8px;
+}
+
+/* Customize buttons */
+:host ::ng-deep .p-button {
+  margin-right: 0.5em;
+  // background-color: #3f9342;
+  // border-color: #39843b;
+}
+
+// /* Customize icons */
+// :host ::ng-deep .pi {
+//   color: white;
+// }
+
+// :host ::ng-deep .pi {
+//   color: black;
+// }
+
+/* Customize the menubar within the toolbar */
+// :host ::ng-deep .header-menubar .p-menubar {
+//   background-color: transparent;
+//   border: none;
+//   margin: 0;
+//   box-shadow: none;
+// }
+
+// :host ::ng-deep .header-menubar .p-menuitem-link {
+//   color: #fff; /* White text */
+//   padding: 0.5em 1em;
+// }
+
+// :host ::ng-deep .header-menubar .p-submenu-list {
+//   background-color: #4caf50;
+//   border-color: #4caf50;
+// }
+
+/* Ensure the submenu items are also styled */
+
+// :host ::ng-deep .p-menubar .p-menuitem-link:hover {
+//   background-color: #444; /* Color when hovered */
+// }
+
+// :host ::ng-deep .p-menubar .p-menuitem-link:active {
+//   background-color: #181818; /* Color when active/clicked */
+// }
+
+
+/* Adjustments for mobile view if necessary */
+@media screen and (max-width: 640px) {
+  .header-menubar .p-menubar {
+    display: none; /* You can toggle visibility based on your mobile layout */
+  }
+}
+
+/* Styling the menubar to fit into the toolbar */
+:host ::ng-deep .p-menubar {
+  border: none;
+  background-color: white;
+  // background-color: #62f9e7 !important;
+  // margin: 0;
+  // padding: 0;
+  display: flex;
+  align-items: center;
+  // color: white;
+}
+
+.room.active {
+  stroke: white;
+  stroke-width: 2px;
+}
+
+// :host
+//   ::ng-deep
+//   .p-menubar
+//   .p-menubar-root-list
+//   > .p-menuitem
+//   > .p-menuitem-content
+//   .p-menuitem-link
+//   .p-menuitem-text {
+//   color: white;
+// }
+
+// :host
+//   ::ng-deep
+//   .p-menubar
+//   .p-menubar-root-list
+//   > .p-menuitem
+//   > .p-menuitem-content
+//   .p-menuitem-link
+//   .p-menuitem-text:hover {
+//   color: black;
+// }
+

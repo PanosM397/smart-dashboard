@@ -249,6 +249,6 @@ app.put('/api/alerts/:id/acknowledge', async (req, res) => {
 app.use(errorHandler);
 
 // Listen on port
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EnergyDataService {
-  // private apiUrl = 'http://localhost:3000/api';
-  private apiUrl = 'https://192.168.2.8:3000/api';
+  private apiUrl = 'http://localhost:3000/api';
+  // private apiUrl = 'https://192.168.2.8:3000/api';
 
   constructor(private http: HttpClient) {}
 

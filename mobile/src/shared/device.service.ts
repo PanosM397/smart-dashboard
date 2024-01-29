@@ -14,8 +14,8 @@ export interface Device {
   providedIn: 'root'
 })
 export class DeviceService {
-  // private apiUrl = 'http://localhost:3000/api/devices';
-  private apiUrl = 'https://192.168.2.8:3000/api/devices';
+  private apiUrl = 'http://localhost:3000/api/devices';
+  // private apiUrl = 'https://192.168.2.8:3000/api/devices';
 
   constructor(private http: HttpClient) { }
 

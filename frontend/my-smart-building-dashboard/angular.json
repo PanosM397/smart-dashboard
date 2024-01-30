@@ -92,10 +92,7 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "buildTarget": "build:production"
-          }
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

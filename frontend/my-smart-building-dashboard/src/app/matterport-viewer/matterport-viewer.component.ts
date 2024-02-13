@@ -46,7 +46,7 @@ export class MatterportViewerComponent implements AfterViewInit {
   }
 
   async connectSdk() {
-    const sdkKey = 'pkhmft8p3rz08940i2p3eg8ra';
+    const sdkKey = 'yc7bs6dr2cqueqip2dh86c69d';
     const iframe = document.getElementById(
       'showcase-iframe'
     ) as HTMLIFrameElement;
@@ -84,15 +84,14 @@ export class MatterportViewerComponent implements AfterViewInit {
     }
   }
 
-
   findRoomIdByMattertagId(mattertagId: string): string | null {
     // Logic to find the corresponding room ID by Mattertag ID
     const roomsData = this.roomService.getRoomsData();
-    const roomEntry = Object.entries(roomsData)
-                            .find(([_, roomData]) => roomData.mattertagId === mattertagId);
+    const roomEntry = Object.entries(roomsData).find(
+      ([_, roomData]) => roomData.mattertagId === mattertagId
+    );
     return roomEntry ? roomEntry[0] : null;
   }
-
 
   highlightSvgRoom(roomId: string) {
     // Remove 'active' class from all rooms

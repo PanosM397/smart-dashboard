@@ -18,9 +18,13 @@ export class DashboardComponent {
 
   displayDialog: boolean = false;
   selectedDevice!: Device;
-deviceUsageData: any;
+  deviceUsageData: any;
 
-  constructor(private http: HttpClient, private deviceService: DeviceService, private messageService: MessageService) {
+  constructor(
+    private http: HttpClient,
+    private deviceService: DeviceService,
+    private messageService: MessageService
+  ) {
     this.fetchDevices();
   }
 
@@ -36,26 +40,27 @@ deviceUsageData: any;
   }
 
   toggleDevice(device: Device) {
-    console.log("Toggling device:", device, "with ID:", device._id);
+    console.log('Toggling device:', device, 'with ID:', device._id);
 
     if (device && device._id != null) {
       this.deviceService.toggleDevice(device._id).subscribe(
         (data) => {
           // Handle response and update UI accordingly
-          const index = this.devices.findIndex(d => d._id === device._id);
+          const index = this.devices.findIndex((d) => d._id === device._id);
           if (index !== -1) {
-            this.devices[index].status = this.devices[index].status === 'On' ? 'Off' : 'On';
+            this.devices[index].status =
+              this.devices[index].status === 'On' ? 'Off' : 'On';
           }
           this.messageService.add({
             severity: 'success',
             summary: 'Device Toggled',
-            detail: `The device ${device.name} has been turned ${device.status}.`
+            detail: `The device ${device.name} has been turned ${device.status}.`,
           });
         },
-        (error) => console.error("Error toggling device:", error)
+        (error) => console.error('Error toggling device:', error)
       );
     } else {
-      console.error("Device ID is undefined:", device);
+      console.error('Device ID is undefined:', device);
     }
   }
 
@@ -68,7 +73,9 @@ deviceUsageData: any;
     this.displayDialog = false;
   }
 
-  getBadgeSeverity(status: string): "success" | "info" | "warning" | "danger" | undefined {
+  getBadgeSeverity(
+    status: string
+  ): 'success' | 'info' | 'warning' | 'danger' | undefined {
     switch (status) {
       case 'On':
         return 'success';

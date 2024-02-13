@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '.././environments/environment.prod';
 
 interface Position {
   x: number;
@@ -24,10 +25,9 @@ interface RoomsData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoomService {
-
   roomsData: RoomsData = {
     room1F1: {
       // roomId: 'room1F1',
@@ -131,7 +131,7 @@ export class RoomService {
   updateRoomData(roomId: string, data: any) {
     console.log('updateRoomData', roomId, data);
     if (this.roomsData[roomId]) {
-      this.roomsData[roomId] = {...this.roomsData[roomId], ...data};
+      this.roomsData[roomId] = { ...this.roomsData[roomId], ...data };
       console.log('updated room data', this.roomsData[roomId]);
     }
   }

@@ -22,16 +22,17 @@ ngx-echarts {
   width: 45vw;
   height: 40vh;
   margin-left: 5px;
+  // padding-right: 25px;
 }
 
 .chart-container4 {
   padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  width:45vw;
+  width: 45vw;
 }
 
 .chart-container2 {
@@ -48,17 +49,17 @@ ngx-echarts {
 
 .chart-container {
   padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* In case the chart exceeds the card boundaries */
+  overflow: auto; /* In case the chart exceeds the card boundaries */
   transition: box-shadow 0.3s ease-in-out;
 }
 
 .chart-container:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 canvas {

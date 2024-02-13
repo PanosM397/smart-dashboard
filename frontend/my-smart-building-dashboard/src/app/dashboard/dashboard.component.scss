@@ -3,10 +3,9 @@
   padding: 2rem;
 }
 
-
 /* dashboard.component.css */
 .iot-device-cards {
-  transition: box-shadow .3s;
+  transition: box-shadow 0.3s;
   display: flex;
   flex-direction: column;
 }
@@ -16,11 +15,11 @@
 }
 
 .device-on {
-  color: #5BB318; /* green */
+  color: #5bb318; /* green */
 }
 
 .device-off {
-  color: #FFA726; /* orange */
+  color: #ffa726; /* orange */
 }
 
 // .p-button-success {
@@ -39,7 +38,7 @@
 }
 
 :host ::ng-deep .p-col {
-  padding: .5em;
+  padding: 0.5em;
 }
 
 // :host ::ng-deep .p-card {
@@ -51,8 +50,6 @@
 //   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
 // }
 
-
-
 .custom-device-cards {
   margin: 0;
   padding: 0;
@@ -60,7 +57,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-:host ::ng-deep  .custom-device-cards .p-col {
+:host ::ng-deep .custom-device-cards .p-col {
   padding: 0.5rem; /* Space between cards */
 }
 
@@ -68,8 +65,8 @@
   margin: 1rem;
   padding: 0 0 0.5rem 0;
   border-radius: 10px;
-  border: 1px solid #37474F;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border: 1px solid #37474f;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   color: #fff; /* Adjust as needed */
   background-color: rgba(50, 54, 56, 0.3) !important;
   transition: box-shadow 0.3s ease-in-out;
@@ -79,7 +76,7 @@
 }
 
 .custom-device-cards .custom-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 .custom-device-cards .custom-card-header {
@@ -89,6 +86,9 @@
   font-weight: bold;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .custom-device-cards .custom-card-icon {
@@ -115,13 +115,10 @@
   // background-color: #fff;
 }
 
-
 :host ::ng-deep .custom-device-cards .p-button {
   background-color: rgba(50, 54, 56, 0.5);
   border-color: rgba(50, 54, 56, 0.5);
 }
-
-
 
 :host ::ng-deep .p-tabview .p-tabview-panels {
   padding: 1rem;
@@ -132,5 +129,5 @@
 :host ::ng-deep .p-tabview .p-tabview-nav li {
   background-color: #f4f4f4;
   border-radius: 5px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }

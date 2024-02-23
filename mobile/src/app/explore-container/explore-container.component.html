@@ -1,6 +1,6 @@
 <ion-content>
   <div class="dashboard-container">
-<!--
+    <!--
     <ion-grid class="chart-container">
       <ion-row>
         <ion-col size="3" *ngFor="let header of ['Energy Consumption', 'Room Temperature', 'Humidity', 'Occupancy']">
@@ -32,17 +32,20 @@
 
     <div class="chart-container">
       <h2>Real Time Energy Consumption</h2>
-      <div echarts [initOpts]="initOpts" [options]="realTimeChartOption" [autoResize]="true" class="chart-container3"></div>
+      <div echarts [initOpts]="initOpts" [options]="realTimeChartOption" [autoResize]="true" class="chart-container3">
+      </div>
     </div>
 
     <div class="chart-container">
       <h2>Historical Energy Consumption</h2>
-      <div echarts [initOpts]="initOpts" [options]="historicalChartOptions" [autoResize]="true" class="chart-container3"></div>
+      <div echarts [initOpts]="initOpts" [options]="historicalChartOptions" [autoResize]="true"
+        class="chart-container3"></div>
     </div>
 
     <div class="chart-container">
       <h3>Occupancy Trends</h3>
-      <div echarts [initOpts]="initOpts" [options]="occupancyTrendsOption" [autoResize]="true" class="chart-container3"></div>
+      <div echarts [initOpts]="initOpts" [options]="occupancyTrendsOption" [autoResize]="true" class="chart-container3">
+      </div>
     </div>
 
     <div class="chart-container">

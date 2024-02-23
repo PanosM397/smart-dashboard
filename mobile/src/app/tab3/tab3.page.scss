@@ -36,7 +36,6 @@
 //   }
 // }
 
-
 // ion-content {
 //   font-family: var(--ion-font-family, 'Roboto', sans-serif);
 //   --ion-padding: 16px
@@ -48,22 +47,48 @@
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 5rem;
+  padding: 4vw; /* Responsive padding */
 }
 
+/* Ensuring the chart container is fully responsive */
 .chart-container {
-  width: 100rem;
-  // max-width: 100%;
-  box-shadow: var(--ion-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.2));
-  border-radius: var(--ion-border-radius, 10px);
-  background-color: var(--ion-background-color, #fff);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out;
+  width: 100%; /* Full width to utilize screen space */
+  margin-bottom: 20px; /* Spacing between charts */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners for a softer look */
+}
+
+.chart-container ion-card {
+  height: auto; /* Allow card to adjust based on content */
+}
+
+.chart-container3,
+.chart-container4 {
+  width: calc(100% - 8vw); /* Adjust width based on parent padding */
+  height: 50vh; /* Adjust height to ensure charts are legible */
+  margin: 0 auto; /* Center chart within the container */
+  overflow: hidden; /* Hide overflow */
+}
+
+@media (max-width: 480px) {
+  /* Adjustments for very small devices */
+  .chart-container3,
+  .chart-container4 {
+    height: 40vh; /* Slightly reduce height for very small screens */
+  }
+}
+
+.chart-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 .chart-container:hover {
   box-shadow: var(--ion-box-shadow-hover, 0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+.chart-container3 h2 {
+  padding-top: 2rem;
+  // margin-bottom: 2rem;
 }
 
 // .summary-metrics {
@@ -72,35 +97,27 @@
 //   gap: 20px;
 // }
 
-.chart-container3, .chart-container4 {
-  width: 45vw;
-  height: 65vh;
-  margin-left: 5px;
-}
-
 .chart-container2 {
   width: 400px;
   height: 300px;
 }
 
-@media (max-width: 768px) {
-  .chart-container, .chart-container3, .chart-container4 {
-    width: 100%;
-  }
+// @media (max-width: 768px) {
+//   .chart-container, .chart-container3, .chart-container4 {
+//     width: 100%;
+//   }
 
-  .chart-container2 {
-    width: 100%;
-    height: auto;
-  }
-}
-
+//   .chart-container2 {
+//     width: 100%;
+//     height: auto;
+//   }
+// }
 
 #echarts {
   width: 100rem;
   min-height: 360px;
   // height: auto;
 }
-
 
 .custom-card {
   margin: 2px;

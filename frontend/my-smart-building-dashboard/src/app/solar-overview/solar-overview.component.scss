@@ -14,12 +14,12 @@
 
 .chart-container4 {
   padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  width:45vw;
+  width: 45vw;
 }
 
 .chart-container2 {
@@ -27,10 +27,8 @@
   height: 300px;
 }
 
-
-
 .content {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   // background-color: #f7f7f7;
   padding: 20px;
 }
@@ -38,15 +36,31 @@
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  // flex-direction: row;
+  gap: 10px;
   margin: 2px;
+  // align-items: stretch;
+  // justify-content: center;
+  // align-items: center;
 }
 
+// .summary-metrics {
+//   display: grid;
+//   grid-template-columns: repeat(
+//     auto-fit,
+//     minmax(400px, 1.5fr)
+//   ); /* Adjust as needed */
+//   gap: 10px;
+//   margin: 2px;
+// }
+
 .chart-container {
-  width: 45rem;
+  flex: 1 0 auto; /* Allow cards to grow and shrink*/
+  min-width: 200px; /* Prevent becoming too small on tiny screens */
+  max-width: 45rem;
   height: 25rem;
   padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: #fff;
   display: flex;
@@ -56,7 +70,7 @@
 }
 
 .chart-container:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 canvas {
@@ -70,15 +84,24 @@ canvas {
 }
 
 :host ::ng-deep .custom-card .p-card {
-  width: 45rem;
+  flex: 1 0 30%; /* Cards can grow, shrink, starting width around 30% */
+  min-width: 150px;
   transition: box-shadow 0.3s ease-in-out;
 }
 
-// @media (max-width: 768px) {
-//   .dashboard-container {
-//     grid-template-columns: 1fr;
-//   }
+// .summary-metrics {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-around;
 // }
+
+@media (max-width: 1668px) {
+  .chart-container {
+    width: 45vw;
+    height: 25vh;
+    margin-left: 5px;
+  }
+}
 
 /* Enhance the interactivity */
 // [class*="p-col-"] {
@@ -98,10 +121,9 @@ canvas {
 
 .custom-card {
   margin: 0.5em;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   height: auto;
-
 }
 
 :host ::ng-deep .p-card .p-card-content {
@@ -109,9 +131,8 @@ canvas {
   overflow: hidden; /* In case the chart exceeds the card boundaries */
 }
 
-
 :host ::ng-deep .p-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 :host ::ng-deep .p-card-title {
@@ -128,5 +149,4 @@ canvas {
   // padding: 10px;
   // background-color: white;
   // margin-bottom: 10px;
-
 }

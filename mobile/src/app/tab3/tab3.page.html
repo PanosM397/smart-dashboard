@@ -10,7 +10,8 @@
                 <ion-card-title>Real Time Data</ion-card-title>
               </ion-card-header>
               <ion-card-content>
-                <div echarts [options]="options" class="echart-style"></div>
+                <div echarts [initOpts]="initOpts" [options]="options" [autoResize]="true" class="chart-container3">
+                </div>
               </ion-card-content>
             </ion-card>
           </div>
@@ -21,7 +22,8 @@
                 <ion-card-title>Historical Data</ion-card-title>
               </ion-card-header>
               <ion-card-content>
-                <div echarts [options]="historicalOptions" class="echart-style"></div>
+                <div echarts [initOpts]="initOpts" [options]="historicalOptions" [autoResize]="true"
+                  class="chart-container3"></div>
               </ion-card-content>
             </ion-card>
           </div>

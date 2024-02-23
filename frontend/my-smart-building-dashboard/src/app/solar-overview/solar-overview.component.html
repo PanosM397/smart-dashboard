@@ -1,11 +1,7 @@
 <div class="content">
   <div class="p-grid dashboard-container">
-    <div *ngFor="let item of dashboardItems; let i = index"
-         class="p-col-12 p-md-6 dashboard-container"
-         pDraggable="dd"
-         (onDragStart)="onDragStart($event, i)"
-         pDroppable="dd"
-         (onDrop)="onDrop($event, i)">
+    <div *ngFor="let item of dashboardItems; let i = index" class="p-col-12 p-md-6 dashboard-container" pDraggable="dd"
+      (onDragStart)="onDragStart($event, i)" pDroppable="dd" (onDrop)="onDrop($event, i)">
 
       <div *ngIf="item.id === 'realTimeData'" class="chart-container">
         <canvas baseChart [data]="realTimeData" type="bar" [options]="options"></canvas>
@@ -15,10 +11,10 @@
         <canvas baseChart [data]="historicalChartData" type="bar" [options]="historicalOptions"></canvas>
       </div>
 
-      <div *ngIf="item.id === 'summaryMetrics'" class="summary-metrics">
-        <p-card class="custom-card" *ngFor="let metric of summaryMetrics" [header]="metric.title">
-          <p>{{ metric.value }}</p>
-          <p-footer>{{ metric.description }}</p-footer>
+      <div *ngIf="item.type === 'summaryMetric'">
+        <p-card class="custom-card" [header]="item.data.title">
+          <p>{{ item.data.value }}</p>
+          <p-footer>{{ item.data.description }}</p-footer>
         </p-card>
       </div>
     </div>

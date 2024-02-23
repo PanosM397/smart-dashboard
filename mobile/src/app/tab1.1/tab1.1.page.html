@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Device Control Center</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Device Control Center</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <!-- <ion-card-header>
+      <ion-card-title style="text-align: center;">IoT Device Control</ion-card-title>
+    </ion-card-header> -->
+    <ion-card-content>
+      <ion-grid class="iot-device-cards">
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let device of devices">
+            <ion-card>
+              <ion-card-header class="device-image-container" [ngClass]="getBadgeStyleClass(device.status)">
+                <ion-card-title>{{ device.name }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <!-- <div class="device-image-container" [ngClass]="getBadgeStyleClass(device.status)"> -->
+                <ion-img src="../../assets/iot.png" alt="Device Image"></ion-img>
+                <!-- </div> -->
+                <ion-button size="small" (click)="toggleDevice(device)" color="primary">
+                  <ion-ripple-effect></ion-ripple-effect>Toggle
+                  <ion-icon slot="start" name="power"></ion-icon>
+                </ion-button>
+                <ion-button size="small" expand="block" (click)="inspectDevice(device)" color="secondary">
+                  <ion-ripple-effect></ion-ripple-effect>Inspect Device
+                  <ion-icon slot="start" name="search"></ion-icon>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-toast [isOpen]="" [duration]="5000" message="This toast will close in 5 seconds"></ion-toast>
+
+  <ion-modal [isOpen]="displayDialog">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Device Details</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeDialog()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-accordion-group>
+          <ion-accordion value="general-info">
+            <ion-item slot="header">
+              <ion-label>General Information</ion-label>
+            </ion-item>
+            <ion-list slot="content">
+            </ion-list>
+          </ion-accordion>
+          <ion-accordion value="usage-stats">
+            <ion-item slot="header">
+              <ion-label>Usage Statistics</ion-label>
+            </ion-item>
+            <ion-list slot="content">
+            </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

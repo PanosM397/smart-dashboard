@@ -19,7 +19,7 @@
     grid-template-columns: 1fr;
   }
 
-  .floor-plan-container{
+  .floor-plan-container {
     max-width: 100%;
   }
 
@@ -28,7 +28,6 @@
     min-width: 50%;
   }
 }
-
 
 .floor-plan-container rect.room {
   transition: fill 0.3s ease, stroke-width 0.3s ease;
@@ -62,8 +61,6 @@
   stroke-width: 2px;
 }
 
-
-
 .floor-plan-container svg {
   width: 100%;
   height: auto;
@@ -86,7 +83,7 @@ rect:hover {
   border: 1px solid #ddd;
   padding: 15px;
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   width: 100%;
 }
@@ -108,7 +105,7 @@ rect:hover {
   padding: 0;
   background: linear-gradient(to bottom, #e6e9f0 0%, #eef1f5 100%);
   color: #333;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -126,7 +123,6 @@ rect:hover {
   display: inline; /* Keep value inline with label */
 }
 
-
 .p-dialog-content {
   margin: 0;
   padding: 0;
@@ -141,8 +137,14 @@ rect:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .room-details p {
@@ -189,7 +191,7 @@ p-footer button.p-button:hover {
 }
 
 p-footer button.p-button .pi {
-  margin-right: .5em;
+  margin-right: 0.5em;
 }
 
 .custom-header {

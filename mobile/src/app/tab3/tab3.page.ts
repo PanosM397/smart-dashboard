@@ -1,194 +1,382 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { EnergyDataService } from 'src/shared/energy-data.service';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
-
+  private intervalId: any;
+  initOpts: any;
   solarData: any;
   options: any;
-  realTimeData: any;
+  realTimeData = [];
+  historicalChartData = [];
   summaryMetrics: any;
-  historicalChartData: any;
   historicalOptions: any;
 
   dashboardItems: any[] = [
     { id: 'realTimeData', type: 'realTimeData' },
     { id: 'historicalData', type: 'historicalData' },
-    { id: 'summaryMetrics', type: 'summaryMetrics' }
+    { id: 'summaryMetrics', type: 'summaryMetrics' },
   ];
 
-  constructor(private energyDataService: EnergyDataService) {
+  constructor(
+    private energyDataService: EnergyDataService,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.initOpts = {
+      devicePixelRatio: window.devicePixelRatio,
+      // renderer: 'canvas',
+      // width: '200%',
+      // height: 430
+    };
+
+    // this.cdr.detectChanges();
+    console.log('Real Time Data:', this.realTimeData);
+    // Verify that `this.realTimeData` is indeed an array and contains the expected structure
 
     this.options = {
       tooltip: {
         trigger: 'axis',
-        formatter: function(params: { seriesName: string; value: number; }[]) {
-          let label = params[0].seriesName + ': ' + params[0].value.toFixed(2);
-          return label;
-        }
+        formatter: function (params: any[]) {
+          // Ensures the tooltip content is concise and mobile-friendly
+          let content = params
+            .map((param: { marker: any; seriesName: any; value: number }) => {
+              return `${param.marker}${param.seriesName}: ${param.value.toFixed(
+                2
+              )}`;
+            })
+            .join('<br/>'); // Use line break to separate series
+
+          return content;
+        },
+        // Adjust tooltip styling for better readability on small screens
+        textStyle: {
+          fontSize: 12, // Smaller font size for mobile readability
+          fontFamily: 'Arial, sans-serif', // Ensure a universally readable font is used
+        },
+        borderColor: '#333', // Optional: Customize border color for better visibility
+        borderWidth: 1, // Optional: Adjust border width to suit mobile aesthetic
+        backgroundColor: 'rgba(255,255,255,0.9)', // Light background with slight opacity for readability
+        padding: 10, // Ensure there's padding around the text for better legibility
+        extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.2);', // Optional: Add a subtle shadow for depth
+        position: function (
+          point: number[],
+          params: any,
+          dom: any,
+          rect: any,
+          size: { viewSize: number[] }
+        ) {
+          // Dynamically position the tooltip to ensure it does not overflow the chart bounds
+          const obj: { top: number; left?: number; right?: number } = {
+            top: 10,
+          }; // Default to placing tooltip at the top to minimize overlap
+          if (point[0] < size.viewSize[0] / 2) {
+            obj.left = point[0] + 20; // Position to the right of the cursor if on the left half
+          } else {
+            obj.right = size.viewSize[0] - point[0] + 20; // Position to the left of the cursor if on the right half
+          }
+          return obj;
+        },
       },
       title: {
         text: 'Solar Energy Generation',
         textStyle: {
-          fontSize: 16
-        }
+          fontSize: 16,
+        },
       },
       legend: {
-        data: ['Solar Energy'], // Replace with your dataset names
-        bottom: 0
+        data: ['Energy Generated (KWh)'],
+        bottom: 0,
       },
       xAxis: {
         type: 'category',
-        data: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'], // Sample times of day
+        data: this.realTimeData,
         axisLabel: {
-          formatter: function(value: any) {
+          formatter: function (value: any) {
             return value; // Format as needed
-          }
-        }
+          },
+        },
       },
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter: '{value} kWh'
-        }
+          rotate: 45, // Adjust angle based on your preference
+          formatter: (value: number) => {
+            // Shorten labels if necessary
+            return value >= 1000 ? `${value / 1000}K` : value;
+          },
+          textStyle: {
+            fontSize: 10, // Smaller font size for mobile
+          },
+        },
       },
-      series: [{
-        name: 'Solar Energy',
-        type: 'line',
-        data: [120, 200, 150, 80, 70, 110, 130, 100], // Sample data
-        smooth: true // For a smoother line chart
-      }]
+      series: [
+        {
+          name: 'Energy Generated (KWh)',
+          type: 'bar',
+          data: this.realTimeData,
+          barWidth: '60%',
+        },
+      ],
+      media: [
+        {
+          query: {
+            maxAspectRatio: 1, // when length-to-width ratio is less than 1
+          },
+          option: {
+            legend: {
+              // legend is placed in middle-bottom
+              right: 'center',
+              bottom: 0,
+              orient: 'horizontal', // horizontal layout of legend
+            },
+            series: [
+              // left and right layout of two pie charts
+              {
+                radius: [20, '50%'],
+                center: ['50%', '30%'],
+              },
+              {
+                radius: [30, '50%'],
+                center: ['50%', '70%'],
+              },
+            ],
+          },
+        },
+        {
+          query: {
+            maxWidth: 500, // when container width is smaller than 500
+          },
+          option: {
+            legend: {
+              right: 10, // legend is placed in middle-right
+              top: '15%',
+              orient: 'vertical', // vertical layout
+            },
+            series: [
+              // top and bottom layout of two pie charts
+              {
+                radius: [20, '50%'],
+                center: ['50%', '30%'],
+              },
+              {
+                radius: [30, '50%'],
+                center: ['50%', '75%'],
+              },
+            ],
+          },
+        },
+      ],
     };
 
     this.historicalOptions = {
       tooltip: {
-        trigger: 'item',
-        formatter: function(params: { seriesName: string; value: number; }) {
-          let label = params.seriesName + ': ' + params.value.toFixed(2);
-          return label;
-        }
+        trigger: 'axis',
+        formatter: function (params: any[]) {
+          // Ensures the tooltip content is concise and mobile-friendly
+          let content = params
+            .map((param: { marker: any; seriesName: any; value: number }) => {
+              return `${param.marker}${param.seriesName}: ${param.value.toFixed(
+                2
+              )}`;
+            })
+            .join('<br/>'); // Use line break to separate series
+
+          return content;
+        },
+        // Adjust tooltip styling for better readability on small screens
+        textStyle: {
+          fontSize: 12, // Smaller font size for mobile readability
+          fontFamily: 'Arial, sans-serif', // Ensure a universally readable font is used
+        },
+        borderColor: '#333', // Optional: Customize border color for better visibility
+        borderWidth: 1, // Optional: Adjust border width to suit mobile aesthetic
+        backgroundColor: 'rgba(255,255,255,0.9)', // Light background with slight opacity for readability
+        padding: 10, // Ensure there's padding around the text for better legibility
+        extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.2);', // Optional: Add a subtle shadow for depth
+        position: function (
+          point: number[],
+          params: any,
+          dom: any,
+          rect: any,
+          size: { viewSize: number[] }
+        ) {
+          // Dynamically position the tooltip to ensure it does not overflow the chart bounds
+          const obj: { top: number; left?: number; right?: number } = {
+            top: 10,
+          }; // Default to placing tooltip at the top to minimize overlap
+          if (point[0] < size.viewSize[0] / 2) {
+            obj.left = point[0] + 20; // Position to the right of the cursor if on the left half
+          } else {
+            obj.right = size.viewSize[0] - point[0] + 20; // Position to the left of the cursor if on the right half
+          }
+          return obj;
+        },
       },
       title: {
         text: 'Solar Energy Generation',
         textStyle: {
-          fontSize: 16
-        }
+          fontSize: 16,
+        },
       },
       legend: {
-        data: ['Solar Energy'], // Replace with your dataset names
-        bottom: 0
+        data: ['Energy Generated (KWh)', 'Energy Consumed (KWh)'],
+        bottom: 0,
       },
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], // Sample days
+        xAxis: this.historicalChartData,
         axisLabel: {
-          formatter: function(value: any) {
-            return value; // Format as needed
-          }
-        }
+          formatter: function (value: any) {
+            return value;
+          },
+        },
       },
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter: '{value} kWh'
-        }
+          rotate: 45,
+          // Custom formatter to adjust label presentation for compactness
+          formatter: function (value: number) {
+            // Check if the value exceeds thousands to use 'K' for kilowatts
+            if (value >= 1000) {
+              return `${(value / 1000).toFixed(1)}k`; // Converts 1000 to 1.0k, for example
+            } else {
+              return `${value}`; // Keeps smaller values as is, for clarity
+            }
+          },
+          textStyle: {
+            fontSize: 10, // Reduce font size for mobile screens to save space
+          },
+        },
+        // Additional yAxis options for better mobile presentation
+        showMinLabel: true, // Ensures the minimum value label is shown
+        showMaxLabel: true, // Ensures the maximum value label is shown
+        boundaryGap: ['20%', '20%'], // Adds a little padding inside the chart area to prevent labels from being cut off
       },
-      series: [{
-        name: 'Solar Energy',
-        type: 'bar',
-        data: [120, 200, 150, 80, 70, 110, 130, 100], // Sample data
-        barWidth: '60%' // Adjust as needed
-      }]
+      series: [
+        {
+          name: 'Energy Generated (KWh)',
+          type: 'bar',
+          series: this.historicalChartData,
+          barWidth: '60%', // Adjust as needed
+        },
+      ],
     };
-
-
   }
 
   ngOnInit() {
-
     this.fetchLatestSolarData();
     this.fetchHistoricalSolarData();
+
+    this.intervalId = setInterval(() => this.fetchLatestSolarData(), 5000);
   }
+
+  // ngAfterViewInit() {
+
+  // }
 
   fetchLatestSolarData() {
     this.energyDataService.getLatestSolarData().subscribe(
-      latestData => {
-        this.realTimeData = this.transformDataForChart([latestData]);
+      (latestData) => {
+        const formattedData = this.transformDataForChart([latestData]);
+        this.options.xAxis.data = formattedData.xAxis.data;
+        this.options.series = formattedData.series;
+        // this.options.series[0].data = this.realTimeData;
+        // this.cdr.detectChanges();
       },
-      error => console.error('Error fetching latest solar data:', error)
+      (error) => console.error('Error fetching latest solar data:', error)
     );
   }
 
   fetchHistoricalSolarData() {
-    const dataLimit = 20; // Adjust the number as needed
-
-    this.energyDataService.getLimitedSolarData(dataLimit)
-      .subscribe(
-        historicalData => {
-          this.historicalChartData = this.prepareHistoricalChartData(historicalData);
-          this.summaryMetrics = this.calculateSummaryMetrics(historicalData);
-        },
-        error => console.error('Error fetching historical solar data:', error)
-      );
+    const dataLimit = 6;
+    this.energyDataService.getLimitedSolarData(dataLimit).subscribe(
+      (historicalData) => {
+        const formattedData = this.prepareHistoricalChartData(historicalData);
+        this.historicalOptions.xAxis.data = formattedData.xAxis.data;
+        this.historicalOptions.series = formattedData.series;
+        this.summaryMetrics = this.calculateSummaryMetrics(historicalData);
+      },
+      (error) => console.error('Error fetching historical solar data:', error)
+    );
   }
 
   transformDataForChart(data: any[]): any {
-    const labels = data.map(d => new Date(d.timestamp).toLocaleTimeString());
-    const energyGeneratedDataset = {
-      label: 'Energy Generated (kWh)',
-      data: data.map(d => d.energyGenerated),
-      fill: false,
-      borderColor: '#42A5F5',
-      backgroundColor: '#42A5F5'
-    };
-    // Add more datasets if you have other data points to show on the same chart
-
     return {
-      labels: labels,
-      datasets: [energyGeneratedDataset]
-    }
-  }
-
-  calculateSummaryMetrics(data: any[]): any {
-    const totalEnergyGenerated = data.reduce((total, current) => total + current.energyGenerated, 0);
-    const averageEfficiency = data.reduce((total, current) => total + current.efficiency, 0) / data.length;
-    const totalEnergyConsumed = data.reduce((total, current) => total + current.energyConsumed, 0);
-
-    return [
-      { title: 'Total Energy Generated', value: totalEnergyGenerated.toFixed(2) + ' kWh', description: 'Total solar energy generated' },
-      { title: 'Average Efficiency', value: averageEfficiency.toFixed(2) + '%', description: 'Average efficiency of solar panels' },
-      { title: 'Total Energy Consumed', value: totalEnergyConsumed.toFixed(2) + ' kWh', description: 'Total energy consumed by the system' }
-    ];
+      xAxis: {
+        type: 'category',
+        data: data.map((d) => new Date(d.timestamp).toLocaleDateString()),
+      },
+      series: [
+        {
+          name: 'Energy Generated (kWh)',
+          type: 'bar',
+          data: data.map((d) => d.energyGenerated),
+        },
+      ],
+    };
   }
 
   prepareHistoricalChartData(data: any[]): any {
-    const labels = data.map(d => new Date(d.timestamp).toLocaleDateString());
-    const energyGeneratedData = data.map(d => d.energyGenerated);
-    const energyConsumedData = data.map(d => d.energyConsumed);
-
+    // Echarts expects data in a format suitable for its configuration, especially for time-series data
     return {
-      labels: labels,
-      datasets: [
+      xAxis: {
+        type: 'category',
+        data: data.map((d) => new Date(d.timestamp).toLocaleDateString()),
+      },
+      series: [
         {
-          label: 'Energy Generated (kWh)',
-          data: energyGeneratedData,
-          fill: false,
-          borderColor: '#42A5F5',
-          backgroundColor: '#42A5F5'
+          name: 'Energy Generated (kWh)',
+          type: 'bar', // or 'line', depending on your chart type
+          data: data.map((d) => d.energyGenerated),
         },
         {
-          label: 'Energy Consumed (kWh)',
-          data: energyConsumedData,
-          fill: false,
-          borderColor: '#FF6384',
-          backgroundColor: '#FF6384'
-        }
-      ]
+          name: 'Energy Consumed (kWh)',
+          type: 'bar', // or 'line', depending on your chart type
+          data: data.map((d) => d.energyConsumed),
+        },
+      ],
     };
   }
 
+  calculateSummaryMetrics(data: any[]): any {
+    const totalEnergyGenerated = data.reduce(
+      (total, current) => total + current.energyGenerated,
+      0
+    );
+    const averageEfficiency =
+      data.reduce((total, current) => total + current.efficiency, 0) /
+      data.length;
+    const totalEnergyConsumed = data.reduce(
+      (total, current) => total + current.energyConsumed,
+      0
+    );
+
+    return [
+      {
+        title: 'Total Energy Generated',
+        value: totalEnergyGenerated.toFixed(2) + ' kWh',
+        description: 'Total solar energy generated',
+      },
+      {
+        title: 'Average Efficiency',
+        value: averageEfficiency.toFixed(2) + '%',
+        description: 'Average efficiency of solar panels',
+      },
+      {
+        title: 'Total Energy Consumed',
+        value: totalEnergyConsumed.toFixed(2) + ' kWh',
+        description: 'Total energy consumed by the system',
+      },
+    ];
+  }
 }

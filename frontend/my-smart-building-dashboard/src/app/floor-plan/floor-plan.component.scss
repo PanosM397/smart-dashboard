@@ -1,36 +1,65 @@
 .dashboard-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Equal width columns */
-  gap: 20px; /* Space between columns */
+  grid-template-columns: 1fr;
+  // display: flex;
+  // flex-direction: column;
+  gap: 20px;
   padding: 20px;
 }
 
 .floor-plan-container {
-  padding: 10px;
+  // padding: 10px;
+  // flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  max-height: 30vmax;
+  overflow: hidden;
   // border: 1px solid #ccc;
   // border-radius: 4px;
   // background-color: #f9f9f9;
 }
 
+.floor-plan-container svg {
+  max-width: 33%; /* Prevents any SVG from taking more than a third of the container's width */
+  height: auto; /* Adjust height automatically to maintain aspect ratio */
+}
+
 .control-panel-container {
-  // flex: 2;
-  position: relative;
-  max-width: 50%;
+  max-width: 65%;
+  position: static;
+  top: 30%;
+  left: 50%;
+  // background: #f0f0f0;
 }
 
 /* Optional: add a media query for responsive design */
-@media (max-width: 768px) {
+// @media (max-width: 768px) {
+//   .dashboard-container {
+//     // flex-direction: column;
+//     grid-template-columns: 1fr;
+//   }
+
+//   .floor-plan-container,
+//   .control-panel-container {
+//     max-width: 100%;
+//   }
+// }
+
+@media (width < 1200px) {
   .dashboard-container {
-    // flex-direction: column;
     grid-template-columns: 1fr;
   }
 
-  .floor-plan-container,
+  .floor-plan-container {
+    max-height: 30vmax;
+    overflow: scroll;
+  }
+
   .control-panel-container {
-    max-width: 100%;
+    max-width: 50%;
+    position: static;
   }
 }
-
 
 .floor-plan-container rect.room {
   transition: fill 0.3s ease, stroke-width 0.3s ease;
@@ -51,6 +80,34 @@
   cursor: pointer;
 }
 
+/* Container to position the ripple effect correctly */
+.ripple-container {
+  position: absolute;
+  overflow: hidden;
+  border-radius: inherit; /* Optional: Inherit border-radius from parent */
+  width: 100%; /* Cover the clickable area */
+  height: 100%;
+  pointer-events: none; /* Prevents interference with clickable elements */
+}
+
+/* Actual ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 600ms linear;
+  background-color: rgba(0, 0, 0, 0.3); /* Ripple color, adjust as needed */
+  pointer-events: none; /* Ensures click events are not blocked */
+}
+
+/* Keyframes for the ripple effect animation */
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 .svg-tooltip {
   background-color: black;
   color: white;
@@ -63,8 +120,6 @@
   stroke: white;
   stroke-width: 2px;
 }
-
-
 
 .floor-plan-container svg {
   width: 100%;
@@ -89,7 +144,7 @@ rect:hover {
   border: 1px solid #ddd;
   padding: 15px;
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   width: 100%;
 }
@@ -111,7 +166,7 @@ rect:hover {
   padding: 0;
   background: linear-gradient(to bottom, #e6e9f0 0%, #eef1f5 100%);
   color: #333;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -129,9 +184,8 @@ rect:hover {
   display: inline; /* Keep value inline with label */
 }
 
-
 .p-dialog-content {
-margin: 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -144,8 +198,14 @@ margin: 0;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .room-details p {
@@ -192,7 +252,7 @@ p-footer button.p-button:hover {
 }
 
 p-footer button.p-button .pi {
-  margin-right: .5em;
+  margin-right: 0.5em;
 }
 
 .custom-header {

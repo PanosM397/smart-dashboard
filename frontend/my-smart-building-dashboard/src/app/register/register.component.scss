@@ -1,0 +1,62 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(202, 202, 202, 0.5);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.auth-header {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #162f68; /* Dark Blue */
+}
+
+.auth-field {
+  margin-bottom: 20px;
+}
+
+.auth-button {
+  width: 100%;
+  background-color: #019ce9; /* Light Blue */
+  border: none;
+}
+
+.auth-button:hover {
+  background-color: darken(#019ce9, 10%);
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .p-inputtext {
+  flex: 1;
+}
+
+.p-field {
+  margin-bottom: 20px;
+}
+
+:host ::ng-deep p-button.password-toggle-button {
+  position: absolute;
+  right: 0;
+  // margin-right: 0.5em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: white;
+}

@@ -6,7 +6,9 @@
   padding: 15px;
 }
 
-:host ::ng-deep  .p-toolbar-group-left, .p-toolbar-group-center, .p-toolbar-group-right {
+:host ::ng-deep .p-toolbar-group-left,
+.p-toolbar-group-center,
+.p-toolbar-group-right {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +21,6 @@
 .p-toolbar-group-right {
   justify-content: flex-end;
 }
-
 
 .logo {
   height: 120px;
@@ -35,7 +36,6 @@
 .user-profile-actions {
   display: flex;
   align-items: center;
-
 }
 
 :host ::ng-deep .p-toolbar {
@@ -106,7 +106,6 @@
 //   background-color: #181818; /* Color when active/clicked */
 // }
 
-
 /* Adjustments for mobile view if necessary */
 @media screen and (max-width: 640px) {
   .header-menubar .p-menubar {
@@ -131,6 +130,19 @@
   stroke-width: 2px;
 }
 
+.username {
+  margin-right: 15px;
+}
+
+.user-profile-icon {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 15px;
+  background: #ccc;
+  color: #fff;
+}
+
 // :host
 //   ::ng-deep
 //   .p-menubar
@@ -152,4 +164,3 @@
 //   .p-menuitem-text:hover {
 //   color: black;
 // }
-

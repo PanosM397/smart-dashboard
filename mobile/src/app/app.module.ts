@@ -10,6 +10,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { HeaderComponent } from './header/header.component';
 
 import { HttpClientModule } from '@angular/common/http';
+// import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],

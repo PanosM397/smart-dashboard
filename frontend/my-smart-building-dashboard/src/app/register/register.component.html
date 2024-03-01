@@ -1,0 +1,60 @@
+<div class="auth-container">
+  <p-card class="auth-card">
+    <div class="auth-header">Register</div>
+    <p>Create your account</p>
+    <form (ngSubmit)="register()" [formGroup]="form">
+      <div class="p-fluid" style="padding-top: 15px; padding-bottom: 15px;">
+        <!-- First Name Field -->
+        <div class="p-field">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" formControlName="first-name" placeholder="First Name"
+            class="p-inputtext p-component" />
+        </div>
+
+        <!-- Last Name Field -->
+        <div class="p-field">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" formControlName="last-name" placeholder="Last Name"
+            class="p-inputtext p-component" />
+        </div>
+
+        <!-- Email Field -->
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" placeholder="Email" class="p-inputtext p-component" />
+        </div>
+
+        <!-- Username Field -->
+        <div class="p-field">
+          <label for="username">Username</label>
+          <input type="text" id="username" formControlName="username" placeholder="Username"
+            class="p-inputtext p-component" />
+        </div>
+
+        <!-- Password Field -->
+        <label for="password">Password</label>
+        <div class="p-field password-input-wrapper">
+          <input type="password" id="password" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+            placeholder="Password" class="p-inputtext p-component" />
+          <p-button type="button" (click)="togglePasswordVisibility()"
+            [icon]="hidePassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
+            class="password-toggle-button p-button-rounded p-button-secondary p-button-text"></p-button>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="p-field password-input-wrapper">
+          <input type="password" id="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'"
+            formControlName="confirmPassword" placeholder="Confirm Password" class="p-inputtext p-component" />
+          <p-button type="button" (click)="toggleConfirmPasswordVisibility()"
+            [icon]="hideConfirmPassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
+            class=" p-button-rounded p-button-secondary p-button-text password-toggle-button"></p-button>
+        </div>
+        <p-button type="submit" label="Register" icon="pi pi-check" class="auth-button"></p-button>
+      </div>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </p-card>
+</div>

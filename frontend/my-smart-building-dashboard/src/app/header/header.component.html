@@ -1,7 +1,9 @@
 <p-toolbar>
   <!-- Logo on the Left -->
   <div class="p-toolbar-group-left">
-    <img src="assets/Smart-building_Management_System1.png" alt="Smart Building Dashboard Logo" class="logo">
+    <a routerLink="/">
+      <img src="assets/Smart-building_Management_System1.png" alt="Smart Building Dashboard Logo" class="logo">
+    </a>
   </div>
 
   <!-- Menu in the Center -->
@@ -11,11 +13,26 @@
 
   <!-- User Profile Actions on the Right -->
   <div class="p-toolbar-group-right">
-    <div class="user-profile-actions">
-      <img src="assets/user-avatar.png" class="profile-image" alt="User Avatar" />
-      <span class="username">John Doe</span>
-      <p-button type="button" icon="pi pi-cog"></p-button>
-      <p-button type="button" icon="pi pi-sign-out"></p-button>
+    <div class="user-profile-actions" *ngIf="isAuthenticated; else loggedOut">
+      <span class="pi pi-user user-profile-icon"></span>
+      <span class="username">{{ username }}</span>
+      <p-button type="button" icon="pi pi-sign-out" label="Logout" (click)="logout()"></p-button>
     </div>
+    <ng-template #loggedOut>
+      <p-button type="button" icon="pi pi-user" label="Login" (click)="login()"></p-button>
+      <p-button type="button" icon="pi pi-plus" label="Register" (click)="register()"></p-button>
+    </ng-template>
   </div>
 </p-toolbar>
+
+<!-- <ng-template #loggedIn>
+  <p-button type="button" icon="pi pi-sign-out" (click)="logout()">
+    Log out
+  </p-button>
+</ng-template>
+
+<ng-template #loggedOut>
+  <p-button type="button" icon="pi pi-user" (click)="login()">
+    Log in
+  </p-button>
+</ng-template> -->

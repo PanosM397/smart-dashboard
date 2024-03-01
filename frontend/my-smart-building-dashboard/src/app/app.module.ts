@@ -13,7 +13,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FloorPlanComponent } from './floor-plan/floor-plan.component';
 import { SystemControlsComponent } from './system-controls/system-controls.component';
 import { AlertsListComponent } from './alerts-list/alerts-list.component';
@@ -43,6 +43,9 @@ import { MessageService } from 'primeng/api';
 import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
 import { MatterportViewerComponent } from './matterport-viewer/matterport-viewer.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,8 @@ import { MatterportViewerComponent } from './matterport-viewer/matterport-viewer
     AlertsListComponent,
     SolarOverviewComponent,
     MatterportViewerComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,7 @@ import { MatterportViewerComponent } from './matterport-viewer/matterport-viewer
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     GridsterModule,
     GridsterComponent,
     GridsterItemComponent,
@@ -90,6 +96,13 @@ import { MatterportViewerComponent } from './matterport-viewer/matterport-viewer
     TooltipModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
+    }),
+    AuthModule.forRoot({
+      domain: 'dev-ic2m12yko37nfi6l.eu.auth0.com',
+      clientId: '35GZ86vIeLZb9SwIQwKbT0tjsDoLwAAz',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
     }),
   ],
   providers: [MessageService],

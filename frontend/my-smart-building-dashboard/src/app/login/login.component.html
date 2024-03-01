@@ -1,0 +1,27 @@
+<div class="auth-container">
+  <p-card class="auth-card">
+    <div class="auth-header">Log In</div>
+    <p>Get access to your account</p>
+    <form (ngSubmit)="login()" [formGroup]="form">
+      <div class="p-fluid" style="padding-top: 15px; padding-bottom: 15px;">
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input id="email" type="text" formControlName="email" placeholder="Email" class="p-inputtext p-component" />
+        </div>
+        <div class="p-field">
+          <label for="password">Password</label>
+          <div class="password-input-wrapper">
+            <input id="password" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+              placeholder="Password" class="p-inputtext p-component" />
+            <p-button type="button" pRipple [icon]="hidePassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
+              (click)="togglePasswordVisibility()" class="p-button-rounded p-button-secondary p-button-text"></p-button>
+          </div>
+        </div>
+      </div>
+      <p-button type="submit" label="Login" icon="pi pi-sign-in" class="auth-button"></p-button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </p-card>
+</div>

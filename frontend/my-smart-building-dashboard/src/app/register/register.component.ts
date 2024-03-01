@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,8 @@ export class RegisterComponent {
   hidePassword = true;
   hideConfirmPassword = true;
   errorMessage!: string;
+
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
@@ -31,20 +34,18 @@ export class RegisterComponent {
 
   register(): void {
     if (this.form.valid) {
-      this.http
-        .post('http://localhost:3000/api/register', this.form.value)
-        .subscribe({
-          next: (response: any) => {
-            console.log('Registration successful', response);
-            // Save user data or token in local storage
-            localStorage.setItem('token', response.token);
-            // Redirect user to the dashboard or home page
-            this.router.navigate(['/dashboard']);
-          },
-          error: (error) => {
-            console.error('Registration failed', error);
-          },
-        });
+      this.http.post(`${this.apiUrl}/register`, this.form.value).subscribe({
+        next: (response: any) => {
+          console.log('Registration successful', response);
+          // Save user data or token in local storage
+          localStorage.setItem('token', response.token);
+          // Redirect user to the dashboard or home page
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error('Registration failed', error);
+        },
+      });
     } else {
       console.error('Form is not valid');
     }

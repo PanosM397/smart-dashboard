@@ -7,7 +7,6 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 import { UserService } from './../../shared/user.service';
 
@@ -28,15 +27,11 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   username = '';
 
-  // user$ = this.auth.user$;
-  // isAuthenticated$ = this.auth.isAuthenticated$;
-
   // settings: SelectItem[]; // For settings dropdown
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private auth: AuthService,
     @Inject(DOCUMENT) public document: Document
   ) {
     // Settings dropdown options

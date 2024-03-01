@@ -43,7 +43,6 @@ import { MessageService } from 'primeng/api';
 import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
 import { MatterportViewerComponent } from './matterport-viewer/matterport-viewer.component';
-import { AuthModule } from '@auth0/auth0-angular';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -96,13 +95,6 @@ import { RegisterComponent } from './register/register.component';
     TooltipModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
-    }),
-    AuthModule.forRoot({
-      domain: 'dev-ic2m12yko37nfi6l.eu.auth0.com',
-      clientId: '35GZ86vIeLZb9SwIQwKbT0tjsDoLwAAz',
-      authorizationParams: {
-        redirect_uri: window.location.origin,
-      },
     }),
   ],
   providers: [MessageService],

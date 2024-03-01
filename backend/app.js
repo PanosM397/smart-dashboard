@@ -6,11 +6,7 @@ const Alert = require("./models/AlertData");
 const errorHandler = require("./middleware/errorHandler");
 const SolarData = require("./models/solar-data.model");
 const Device = require("./models/device.model");
-// const { auth, requiresAuth } = require("express-openid-connect");
-// require("dotenv").config();
 const bcrypt = require("bcryptjs");
-const { router } = require("./routes/auth");
-const ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
 require("./middleware/passport-config");
 
@@ -24,29 +20,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:4200" }));
+app.use(cors());
 app.use(express.json());
-// app.use("/auth", router);
 app.use(passport.initialize());
-
-// Auth0 configuration
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: process.env.AUTH0_CLIENT_SECRET,
-//   baseURL: "http://localhost:4200",
-//   clientID: process.env.AUTH0_CLIENT_ID,
-//   issuerBaseURL: process.env.AUTH0_DOMAIN,
-// };
-
-// // Auth middleware
-// app.use(auth(config));
-// console.log("Auth0 configuration: ", config);
-
-// // Require authentication for all routes
-// app.get("/", (req, res) => {
-//   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-// });
 
 app.use((req, res, next) => {
   res.setHeader("Permissions-Policy", "xr-spatial-tracking=()");
@@ -55,10 +31,6 @@ app.use((req, res, next) => {
 
 // Connect to DB
 connectDB();
-
-// app.get("/profile", requiresAuth(), (req, res) => {
-//   res.send(JSON.stringify(req.oidc.user, null, 2));
-// });
 
 app.get(
   "/api/protected",

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -10,10 +9,7 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent implements OnInit {
   title = 'my-smart-building-dashboard';
 
-  constructor(
-    private primengConfig: PrimeNGConfig,
-    private authService: AuthService
-  ) {}
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
     this.primengConfig.ripple = true;

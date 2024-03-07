@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment.prod';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent {
   private apiUrl = environment.apiUrl;
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
@@ -37,9 +39,11 @@ export class RegisterComponent {
       this.http.post(`${this.apiUrl}/register`, this.form.value).subscribe({
         next: (response: any) => {
           console.log('Registration successful', response);
-          // Save user data or token in local storage
+          // Save the token in local storage
           localStorage.setItem('token', response.token);
-          // Redirect user to the dashboard or home page
+          // Notify other components about the authentication status change
+          this.authService.notifyLoginStatusChanged(true);
+          // Redirect the user to the dashboard or home page
           this.router.navigate(['/dashboard']);
         },
         error: (error) => {

@@ -55,8 +55,8 @@
 // }
 
 .chart-container {
-  flex: 1 0 auto; /* Allow cards to grow and shrink*/
-  min-width: 200px; /* Prevent becoming too small on tiny screens */
+  flex: 1 0 auto;
+  min-width: 200px;
   max-width: 45rem;
   height: 25rem;
   padding: 20px;
@@ -65,7 +65,7 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* In case the chart exceeds the card boundaries */
+  overflow: hidden;
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -84,7 +84,7 @@ canvas {
 }
 
 :host ::ng-deep .custom-card .p-card {
-  flex: 1 0 30%; /* Cards can grow, shrink, starting width around 30% */
+  flex: 1 0 30%;
   min-width: 150px;
   transition: box-shadow 0.3s ease-in-out;
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment.prod';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   private apiUrl = environment.apiUrl;
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
@@ -31,21 +33,19 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.form.valid) {
+      console.log('Form is valid', this.form.value);
       this.http.post(`${this.apiUrl}/login`, this.form.value).subscribe({
         next: (response: any) => {
           console.log('Login successful', response);
-          // Assuming response contains user token or data
           localStorage.setItem('token', response.token);
-          // Redirect to the dashboard or home page
+          this.authService.notifyLoginStatusChanged(true);
           this.router.navigate(['/dashboard']);
         },
         error: (error) => {
           console.error('Login failed', error);
-          this.errorMessage = 'Login failed. Please try again.'; // Display or handle error message
+          this.errorMessage = 'Login failed. Please try again.';
         },
       });
-    } else {
-      this.errorMessage = 'Please fill in all required fields correctly.';
     }
   }
 

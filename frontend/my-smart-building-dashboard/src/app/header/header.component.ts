@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './../../shared/user.service';
+import { AuthService } from 'src/shared/auth.service';
 
 interface MenuItem {
   label: string;
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
   // settings: SelectItem[]; // For settings dropdown
 
   constructor(
+    private authService: AuthService,
     private router: Router,
     private userService: UserService,
     @Inject(DOCUMENT) public document: Document
@@ -58,6 +60,16 @@ export class HeaderComponent implements OnInit {
         routerLink: '/solar',
       },
     ];
+
+    this.authService.loginStatusChanged.subscribe((isLoggedIn) => {
+      if (isLoggedIn) {
+        this.attemptFetchUserData();
+      } else {
+        // Handle logout
+        this.isAuthenticated = false;
+        this.username = '';
+      }
+    });
   }
 
   ngOnInit() {
@@ -102,6 +114,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     this.isAuthenticated = false;
     this.username = '';
+    this.authService.notifyLoginStatusChanged(false);
     this.router.navigate(['/login']);
   }
 }
